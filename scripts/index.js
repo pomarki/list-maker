@@ -1,6 +1,5 @@
-let text = "one, ert, rgrwgw,  wrg, grw,t";
-
 const mainBtn = document.getElementById("main-btn");
+const copyBtn = document.getElementById("copy-btn");
 const answer = document.getElementById("answer");
 
 const parser = (textBlock) => {
@@ -21,13 +20,28 @@ const parser = (textBlock) => {
 
 const picker = (arr) => {
   let res = arr.join("\n");
-  
+
   return res;
 };
 
-mainBtn.addEventListener("click", () => {
-  
+const foo = () => {
   let textInput = document.getElementById("story").value;
-  answer.textContent = picker(parser(textInput));
-  console.log(answer.textContent)
-});
+  answer.value = picker(parser(textInput));
+}
+
+const boo = () => {
+  answer.select();
+  navigator.clipboard
+    .writeText(answer.value)
+    .then(() => {
+      console.log("Текст успешно скопирован");
+    })
+    .catch((err) => {
+      console.error("Не удалось скопировать текст: ", err);
+    });
+    answer.setSelectionRange(0, 0);
+}
+
+mainBtn.addEventListener("click", () => foo());
+
+copyBtn.addEventListener("click", () => boo());

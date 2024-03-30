@@ -28,23 +28,28 @@ html {
   height: 100%;
   color: #1f363d;
   background-color: #ebebeb;
-  transition: background-color 700ms linear;
   position: relative;
+  margin: 0;
 }
 .main {
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-
+  background-color: #1f363d;
 }
 .item {
-  width: 80%;
+  width: 90%;
   height: 300px;
   border: 1px #c0c0c0 solid;
   border-radius: 5px;
   outline: none;
   padding: 0;
   color: #ff6700;
+  padding: 15px;
+  box-sizing: border-box;
+  align-self: center;
+  justify-self: center;
 }
 
 .item:focus {
@@ -56,4 +61,6 @@ html {
   padding: 0;
   width: 100px;
   height: 35px;
+  align-self: start;
+  justify-self: center;
 }
