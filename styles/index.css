@@ -36,7 +36,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: #1f363d;
+  background-color: #fff;
 }
 .item {
   width: 90%;
@@ -61,6 +61,28 @@ html {
   padding: 0;
   width: 100px;
   height: 35px;
+  border: 1px #c0c0c0 solid;
+  border-radius: 5px;
+}
+
+.divider {
+  width: 100px;
+  height: 35px;
+  padding: 0;
+  border: 1px #c0c0c0 solid;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+}
+
+.main-button:focus {
+  border: 1px #ff6700 solid;
+}
+.divider:focus {
+  border: 1px #ff6700 solid;
+}
+
+.main-block {
   align-self: start;
   justify-self: center;
 }

@@ -1,9 +1,15 @@
 const mainBtn = document.getElementById("main-btn");
 const copyBtn = document.getElementById("copy-btn");
+const clearBtn = document.getElementById("clear-btn");
 const answer = document.getElementById("answer");
+const divider = document.getElementById("divider");
 
-const parser = (textBlock) => {
-  let rawRes = textBlock.split(",");
+const parser = (textBlock, dividerVal) => {
+  let sep;
+
+  dividerVal === "" ? (sep = ",") : (sep = dividerVal);
+
+  let rawRes = textBlock.split(sep);
 
   const compacter = (item) => {
     return item.trim();
@@ -26,8 +32,8 @@ const picker = (arr) => {
 
 const foo = () => {
   let textInput = document.getElementById("story").value;
-  answer.value = picker(parser(textInput));
-}
+  answer.value = picker(parser(textInput, divider.value));
+};
 
 const boo = () => {
   answer.select();
@@ -39,9 +45,16 @@ const boo = () => {
     .catch((err) => {
       console.error("Не удалось скопировать текст: ", err);
     });
-    answer.setSelectionRange(0, 0);
+  answer.setSelectionRange(0, 0);
+};
+
+const moo = () => {
+  document.getElementById("story").value = ""
+  answer.value = ""
 }
 
 mainBtn.addEventListener("click", () => foo());
 
 copyBtn.addEventListener("click", () => boo());
+
+clearBtn.addEventListener("click", () => moo())
