@@ -2,7 +2,7 @@
   --black: #000000;
   --white: #ffffff;
   --gray: #e4e7e2;
-  --light-gray: rgba(217, 217, 217, 0.1);
+  --light-gray: #bcb8b1;
 
   --easy-green: #65e6c5; /*не работает в works*/
   --green: #06d6a0;
@@ -31,7 +31,7 @@ html {
 
 ::placeholder {
   color: var(--gray);
-  font-size: 20px;
+  font-size: 15px;
 }
 
 textarea:focus::-webkit-input-placeholder {
@@ -81,7 +81,7 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 .item:focus {
-  background-color: var(--extra-light-blue);
+  border: 1px var(--red) solid;
 }
 
 .main-button {
@@ -117,8 +117,22 @@ textarea:focus::-webkit-input-placeholder {
 
 .main-button:hover {
   background-color: var(--easy-green);
+  transition: background-color 0.4s linear;
 }
 
 .main-button_clear:hover {
   background-color: var(--red);
+}
+
+.main-button_theme:hover {
+  background-color: var(--orange);
+}
+
+.main_dark {
+  background-color: var(--dark-blue);
+}
+
+.item_dark {
+  background-color: var(--black);
+  color: var(--white);
 }

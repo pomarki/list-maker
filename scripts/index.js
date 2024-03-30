@@ -1,8 +1,12 @@
 const mainBtn = document.getElementById("main-btn");
 const copyBtn = document.getElementById("copy-btn");
 const clearBtn = document.getElementById("clear-btn");
+const themeBtn = document.getElementById("theme-btn");
 const answer = document.getElementById("answer");
 const divider = document.getElementById("divider");
+const mainSection = document.querySelector(".main");
+const itemBlocks = Array.from(document.querySelectorAll(".item"));
+let darkTheme = false;
 
 const parser = (textBlock, dividerVal) => {
   let sep;
@@ -49,12 +53,23 @@ const boo = () => {
 };
 
 const moo = () => {
-  document.getElementById("story").value = ""
-  answer.value = ""
-}
+  document.getElementById("story").value = "";
+  answer.value = "";
+};
+
+const themeToggle = () => {
+  darkTheme = !darkTheme;
+  mainSection.classList.toggle("main_dark");
+  itemBlocks.forEach((item) => {
+    item.classList.toggle("item_dark");
+  });
+  darkTheme ? (themeBtn.textContent = "🌛") : (themeBtn.textContent = "☀️");
+};
 
 mainBtn.addEventListener("click", () => foo());
 
 copyBtn.addEventListener("click", () => boo());
 
-clearBtn.addEventListener("click", () => moo())
+clearBtn.addEventListener("click", () => moo());
+
+themeBtn.addEventListener("click", () => themeToggle());
