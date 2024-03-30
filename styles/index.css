@@ -1,11 +1,41 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #e4e7e2;
+  --light-gray: rgba(217, 217, 217, 0.1);
+
+  --easy-green: #65e6c5; /*не работает в works*/
+  --green: #06d6a0;
+  --light-green: #a5f0dd;
+  --extra-light-green: #cdf7ec;
+
+  --blue: #118ab2;
+  --dark-blue: #073b4c;
+  --easy-blue: #6faed1;
+  --light-blue: #c3e2ec;
+  --extra-light-blue: #cfe4f0; /*не работает в works*/
+
+  --red: #ef476f;
+  --easy-red: #f7a7ba;
+  --light-red: #fbd1db;
+  --extra-light-red: #fcdae2;
+
+  --violet: #67468b;
+  --orange: #ffd166;
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;
 }
 
 ::placeholder {
-  color: rgb(236, 235, 235);
+  color: var(--gray);
   font-size: 20px;
+}
+
+textarea:focus::-webkit-input-placeholder {
+  color: var(--white);
 }
 
 .wrapper {
@@ -26,8 +56,6 @@ html {
   align-items: center;
   flex-direction: column;
   height: 100%;
-  color: #1f363d;
-  background-color: #ebebeb;
   position: relative;
   margin: 0;
 }
@@ -36,16 +64,16 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: #fff;
+  background-color: var(--gray);
 }
 .item {
   width: 90%;
   height: 300px;
-  border: 1px #c0c0c0 solid;
-  border-radius: 5px;
+  border: 1px var(--blue) solid;
+  border-radius: 5px 0 0 5px;
   outline: none;
   padding: 0;
-  color: #ff6700;
+  color: var(--black);
   padding: 15px;
   box-sizing: border-box;
   align-self: center;
@@ -53,15 +81,14 @@ html {
 }
 
 .item:focus {
-  border: 1px #ff6700 solid;
-  background-color: #c0c0c0;
+  background-color: var(--extra-light-blue);
 }
 
 .main-button {
   padding: 0;
   width: 100px;
   height: 35px;
-  border: 1px #c0c0c0 solid;
+  border: 1px var(--blue) solid;
   border-radius: 5px;
 }
 
@@ -69,20 +96,29 @@ html {
   width: 100px;
   height: 35px;
   padding: 0;
-  border: 1px #c0c0c0 solid;
+  border: 1px var(--blue) solid;
   border-radius: 5px;
   text-align: center;
   outline: none;
 }
 
 .main-button:focus {
-  border: 1px #ff6700 solid;
+  border: 1px var(--dark-blue) solid;
 }
 .divider:focus {
-  border: 1px #ff6700 solid;
+  border: 1px var(--dark-blue) solid;
+  background-color: var(--extra-light-blue);
 }
 
 .main-block {
   align-self: start;
   justify-self: center;
+}
+
+.main-button:hover {
+  background-color: var(--easy-green);
+}
+
+.main-button_clear:hover {
+  background-color: var(--red);
 }
