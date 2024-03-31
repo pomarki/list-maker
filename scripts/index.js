@@ -39,7 +39,6 @@ const picker = (arr) => {
 const foo = () => {
   let textInput = document.getElementById("story").value;
   answer.value = picker(parser(textInput, divider.value));
-  console.log(textInput.split('\n'))
 };
 
 const boo = () => {
@@ -80,8 +79,3 @@ copyBtn.addEventListener("click", () => boo());
 clearBtn.addEventListener("click", () => moo());
 
 themeBtn.addEventListener("click", () => themeToggle());
-
-const roo = (arr) => {
- return;
-}
-
