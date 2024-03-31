@@ -4,7 +4,7 @@
   --gray: #e4e7e2;
   --light-gray: #bcb8b1;
 
-  --easy-green: #65e6c5; /*не работает в works*/
+  --easy-green: #65e6c5;
   --green: #06d6a0;
   --light-green: #a5f0dd;
   --extra-light-green: #cdf7ec;
@@ -13,7 +13,7 @@
   --dark-blue: #073b4c;
   --easy-blue: #6faed1;
   --light-blue: #c3e2ec;
-  --extra-light-blue: #cfe4f0; /*не работает в works*/
+  --extra-light-blue: #cfe4f0;
 
   --red: #ef476f;
   --easy-red: #f7a7ba;
@@ -30,12 +30,8 @@ html {
 }
 
 ::placeholder {
-  color: var(--gray);
+  color: var(--blue);
   font-size: 15px;
-}
-
-textarea:focus::-webkit-input-placeholder {
-  color: var(--white);
 }
 
 .wrapper {
@@ -72,9 +68,9 @@ textarea:focus::-webkit-input-placeholder {
   border: 1px var(--blue) solid;
   border-radius: 5px 0 0 5px;
   outline: none;
-  padding: 0;
   color: var(--black);
   padding: 15px;
+  margin: 15px;
   box-sizing: border-box;
   align-self: center;
   justify-self: center;
@@ -90,11 +86,13 @@ textarea:focus::-webkit-input-placeholder {
   height: 35px;
   border: 1px var(--blue) solid;
   border-radius: 5px;
+  margin: 15px;
 }
 
 .divider {
   width: 100px;
   height: 35px;
+  margin: 15px;
   padding: 0;
   border: 1px var(--blue) solid;
   border-radius: 5px;
@@ -106,26 +104,40 @@ textarea:focus::-webkit-input-placeholder {
   border: 1px var(--dark-blue) solid;
 }
 .divider:focus {
-  border: 1px var(--dark-blue) solid;
-  background-color: var(--extra-light-blue);
+  border: 1px var(--red) solid;
 }
 
 .main-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 15px;
   align-self: start;
   justify-self: center;
 }
 
 .main-button:hover {
   background-color: var(--easy-green);
+  color: var(--black);
   transition: background-color 0.4s linear;
 }
 
 .main-button_clear:hover {
+  color: var(--black);
   background-color: var(--red);
 }
 
 .main-button_theme:hover {
+  color: var(--black);
   background-color: var(--orange);
+}
+
+.main-button_info {
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  margin: 40px;
 }
 
 .main_dark {
@@ -133,6 +145,16 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 .item_dark {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.main-button_dark {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.divider_dark {
   background-color: var(--black);
   color: var(--white);
 }

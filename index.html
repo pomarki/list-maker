@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/index.css" />
     <script type="module" src="scripts/index.js" defer></script>
-    <title>text-speller</title>
+    <title>list-maker</title>
   </head>
   <body class="body">
     <div class="wrapper">
@@ -24,13 +24,15 @@
           placeholder="тут появится ответ"
         ></textarea>
         <div class="main-block">
-          <input type="text" id="divider" class="divider" placeholder="разделитель">
-          <button class="main-button" id="main-btn">parse</button>
-          <button class="main-button" id="copy-btn">copy</button>
-          <button class="main-button main-button_clear" id="clear-btn">clear</button>
-          <button class="main-button main-button_theme" id="theme-btn">☀️</button>
+          <input type="text" id="divider" class="divider divider_dark" placeholder="разделитель">
+          <button class="main-button main-button_dark" id="main-btn">parse</button>
+          <button class="main-button main-button_dark" id="copy-btn">copy</button>
+          <button class="main-button main-button_clear main-button_dark" id="clear-btn">clear</button>
+          <button class="main-button main-button_theme main-button_dark" id="theme-btn">☀️</button>
         </div>
-        
+        <a href="https://github.com/pomarki/list-maker/blob/main/README.md">
+          <button class="main-button main-button_info main-button_dark">i</button>
+        </a>
       </main>
     </div>
   </body>

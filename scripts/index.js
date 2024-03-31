@@ -6,6 +6,8 @@ const answer = document.getElementById("answer");
 const divider = document.getElementById("divider");
 const mainSection = document.querySelector(".main");
 const itemBlocks = Array.from(document.querySelectorAll(".item"));
+const buttons = Array.from(document.querySelectorAll(".main-button"));
+
 let darkTheme = false;
 
 const parser = (textBlock, dividerVal) => {
@@ -60,8 +62,12 @@ const moo = () => {
 const themeToggle = () => {
   darkTheme = !darkTheme;
   mainSection.classList.toggle("main_dark");
+  divider.classList.toggle("divider_dark");
   itemBlocks.forEach((item) => {
     item.classList.toggle("item_dark");
+  });
+  buttons.forEach((item) => {
+    item.classList.toggle("main-button_dark");
   });
   darkTheme ? (themeBtn.textContent = "🌛") : (themeBtn.textContent = "☀️");
 };
