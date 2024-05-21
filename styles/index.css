@@ -44,21 +44,37 @@ html {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 100px 1fr 1fr;
   background-color: var(--gray);
 }
 .item {
   width: 90%;
   height: 300px;
   border: 1px var(--blue) solid;
-  border-radius: 5px 0 0 5px;
+  border-radius: 0 0 0 5px;
   outline: none;
   color: var(--black);
   padding: 15px;
-  margin: 15px;
+  margin: 0 15px 15px 15px;
   box-sizing: border-box;
-  align-self: center;
+  align-self: flex-start;
   justify-self: center;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.item__title {
+  
+  width: 90%;
+  align-self: flex-end;
+  justify-self: center;
+}
+
+.item__title-btn {
+  padding: 0;
+  width: 80px;
+  height: 25px;
+  border: 1px var(--blue) solid;
+  background-color: var(--black);
 }
 
 .item:focus {
@@ -100,7 +116,6 @@ html {
   margin: 15px;
   align-self: start;
   justify-self: center;
-  
 }
 
 .main-button:hover {
@@ -127,7 +142,7 @@ html {
 }
 
 .main-button_csv {
-  width: 35px;
+  width: 100px;
   height: 35px;
   border-radius: 100px;
 }
