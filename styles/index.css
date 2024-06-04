@@ -63,7 +63,6 @@ html {
   grid-row-end: 3;
 }
 .item__title {
-  
   width: 90%;
   align-self: flex-end;
   justify-self: center;
@@ -73,8 +72,12 @@ html {
   padding: 0;
   width: 80px;
   height: 25px;
-  border: 1px var(--blue) solid;
+  border: 1px 1px 0 1px var(--blue) solid;
   background-color: var(--black);
+}
+
+.item__title-btn:hover {
+  cursor: pointer;
 }
 
 .item:focus {
@@ -159,6 +162,14 @@ html {
 .main-button_dark {
   background-color: var(--black);
   color: var(--white);
+}
+
+.item__title-btn_active {
+  background-color: #118ab2;
+}
+
+.item__title-btn_active:hover {
+  cursor: auto;
 }
 
 .divider_dark {
