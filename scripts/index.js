@@ -50,8 +50,8 @@ const csvParser = (textBlock, dividerVal) => {
   let resultStrings = textBlock.split("\n");
   let resultColumns = resultStrings.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
-  let preResult = arrResult.map((string) => string.join(dividerVal)).join("\n");
-
+  let preResult = arrResult.map((string) => string.join(sep)).join("\n");
+  console.log(arrResult)
   return preResult;
 };
 
