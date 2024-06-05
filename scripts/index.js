@@ -11,14 +11,24 @@ const buttons = Array.from(document.querySelectorAll(".main-button"));
 const itemBtns = Array.from(document.querySelectorAll(".item__title-btn"));
 const listBtn = document.getElementById("list-btn");
 const csvBtn = document.getElementById("csv-btn");
-const plhWindows = ["вставьте текст с разделителями", "вставьте скопированную таблицу"];
+const plhWindows = [
+  "вставьте текст с разделителями",
+  "вставьте скопированную таблицу",
+];
+
+let allWindows = ["list", "csv"];
+let activeWindow = allWindows[0];
 
 let darkTheme = false;
 
-const parser = (textBlock, dividerVal) => {
+const getDiviver = (item) => {
   let sep;
+  item === "" ? (sep = ",") : (sep = item);
+  return sep;
+};
 
-  dividerVal === "" ? (sep = ",") : (sep = dividerVal);
+const listParser = (textBlock, dividerVal) => {
+  let sep = getDiviver(dividerVal);
 
   let rawRes = textBlock.split(sep);
 
@@ -35,6 +45,16 @@ const parser = (textBlock, dividerVal) => {
   return res;
 };
 
+const csvParser = (textBlock, dividerVal) => {
+  let sep = getDiviver(dividerVal);
+  let resultStrings = textBlock.split("\n");
+  let resultColumns = resultStrings.filter((item) => item != "");
+  let arrResult = resultColumns.map((item) => item.split("\t"));
+  let preResult = arrResult.map((string) => string.join(dividerVal)).join("\n");
+
+  return preResult;
+};
+
 const picker = (arr) => {
   let res = arr.join("\n");
 
@@ -43,7 +63,13 @@ const picker = (arr) => {
 
 const foo = () => {
   let textInput = question.value;
-  answer.value = picker(parser(textInput, divider.value));
+  if (activeWindow === "list") {
+    answer.value = picker(listParser(textInput, divider.value));
+  }
+
+  if (activeWindow === "csv") {
+    answer.value = csvParser(textInput, divider.value);
+  }
 };
 
 const boo = () => {
@@ -80,9 +106,9 @@ const themeToggle = () => {
 const windowsToggle = (id) => {
   let index = itemBtns.indexOf(id);
   question.placeholder = plhWindows[index];
-
+  activeWindow = allWindows[index];
   itemBtns.forEach((item) => {
-    item == id
+    item === id
       ? item.classList.add("item__title-btn_active")
       : item.classList.remove("item__title-btn_active");
   });
