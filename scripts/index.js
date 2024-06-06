@@ -51,7 +51,6 @@ const csvParser = (textBlock, dividerVal) => {
   let resultColumns = resultStrings.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
   let preResult = arrResult.map((string) => string.join(sep)).join("\n");
-  console.log(arrResult)
   return preResult;
 };
 
@@ -100,6 +99,9 @@ const themeToggle = () => {
   buttons.forEach((item) => {
     item.classList.toggle("main-button_dark");
   });
+  itemBtns.forEach((item) => {
+    item.classList.toggle("item_dark");
+  })
   darkTheme ? (themeBtn.textContent = "🌛") : (themeBtn.textContent = "☀️");
 };
 
