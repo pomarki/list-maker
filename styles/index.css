@@ -45,7 +45,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100px 1fr 1fr;
-  background-color: var(--gray);
+  background-color: var(--white);
 }
 .item {
   width: 90%;
@@ -63,6 +63,9 @@ html {
   grid-row-end: 3;
 }
 .item__title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   width: 90%;
   align-self: flex-end;
   justify-self: center;
@@ -73,7 +76,7 @@ html {
   width: 80px;
   height: 25px;
   border: 1px 1px 0 1px var(--blue) solid;
-  background-color: var(--white);
+  background-color: var(--gray);
 }
 
 .item__title-btn:hover {
@@ -165,7 +168,8 @@ html {
 }
 
 .item__title-btn_active {
-  background-color: #118ab2;
+  background-color: var(--blue);
+  color: var(--white);
 }
 
 .item__title-btn_active:hover {

@@ -11,12 +11,21 @@ const buttons = Array.from(document.querySelectorAll(".main-button"));
 const itemBtns = Array.from(document.querySelectorAll(".item__title-btn"));
 const listBtn = document.getElementById("list-btn");
 const csvBtn = document.getElementById("csv-btn");
+const mdBtn = document.getElementById("md-btn");
 const plhWindows = [
   "вставьте текст с разделителями",
   "вставьте скопированную таблицу",
+  "вставьте скопированную таблицу 1",
 ];
 
-let allWindows = ["list", "csv"];
+const windowsNaming = (arr) => {
+  const res = arr.map((item) => {
+    return item.id;
+  });
+  return res;
+};
+
+let allWindows = windowsNaming(itemBtns);
 let activeWindow = allWindows[0];
 
 let darkTheme = false;
@@ -25,6 +34,10 @@ const getDiviver = (item) => {
   let sep;
   item === "" ? (sep = ",") : (sep = item);
   return sep;
+};
+
+const validator = (cell, dividerVal) => {
+  let sep = getDiviver(dividerVal);
 };
 
 const listParser = (textBlock, dividerVal) => {
@@ -50,7 +63,8 @@ const csvParser = (textBlock, dividerVal) => {
   let resultStrings = textBlock.split("\n");
   let resultColumns = resultStrings.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
-  let preResult = arrResult.map((string) => string.join(sep)).join("\n");
+  let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
+
   return preResult;
 };
 
@@ -62,13 +76,16 @@ const picker = (arr) => {
 
 const foo = () => {
   let textInput = question.value;
-  if (activeWindow === "list") {
+  if (activeWindow === "list-btn") {
     answer.value = picker(listParser(textInput, divider.value));
   }
 
-  if (activeWindow === "csv") {
+  if (activeWindow === "csv-btn") {
     answer.value = csvParser(textInput, divider.value);
   }
+
+  
+
 };
 
 const boo = () => {
@@ -101,16 +118,20 @@ const themeToggle = () => {
   });
   itemBtns.forEach((item) => {
     item.classList.toggle("item_dark");
-  })
+  });
   darkTheme ? (themeBtn.textContent = "🌛") : (themeBtn.textContent = "☀️");
 };
 
 const windowsToggle = (id) => {
-  let index = itemBtns.indexOf(id);
+  let index = allWindows.indexOf(id);
+
   question.placeholder = plhWindows[index];
+
   activeWindow = allWindows[index];
+
+  console.log(allWindows, index)
   itemBtns.forEach((item) => {
-    item === id
+    item.id === id
       ? item.classList.add("item__title-btn_active")
       : item.classList.remove("item__title-btn_active");
   });
@@ -124,6 +145,8 @@ clearBtn.addEventListener("click", () => moo());
 
 themeBtn.addEventListener("click", () => themeToggle());
 
-listBtn.addEventListener("click", (e) => windowsToggle(e.target));
+listBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
 
-csvBtn.addEventListener("click", (e) => windowsToggle(e.target));
+csvBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
+
+mdBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
