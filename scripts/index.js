@@ -38,6 +38,7 @@ const getDiviver = (item) => {
 
 const validator = (cell, dividerVal) => {
   let sep = getDiviver(dividerVal);
+  return cell.includes(sep);
 };
 
 const listParser = (textBlock, dividerVal) => {
@@ -64,7 +65,7 @@ const csvParser = (textBlock, dividerVal) => {
   let resultColumns = resultStrings.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
   let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
-
+  console.log(arrResult);
   return preResult;
 };
 
@@ -83,9 +84,6 @@ const foo = () => {
   if (activeWindow === "csv-btn") {
     answer.value = csvParser(textInput, divider.value);
   }
-
-  
-
 };
 
 const boo = () => {
@@ -123,13 +121,14 @@ const themeToggle = () => {
 };
 
 const windowsToggle = (id) => {
-  let index = allWindows.indexOf(id);
+ 
+   let index = allWindows.indexOf(id);
 
   question.placeholder = plhWindows[index];
 
   activeWindow = allWindows[index];
 
-  console.log(allWindows, index)
+  
   itemBtns.forEach((item) => {
     item.id === id
       ? item.classList.add("item__title-btn_active")
@@ -145,8 +144,14 @@ clearBtn.addEventListener("click", () => moo());
 
 themeBtn.addEventListener("click", () => themeToggle());
 
-listBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
+listBtn.addEventListener("click", (e) =>
+  windowsToggle(e.target.id === "" ? e.target.parentNode.id : e.target.id)
+);
 
-csvBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
+csvBtn.addEventListener("click", (e) =>
+  windowsToggle(e.target.id === "" ? e.target.parentNode.id : e.target.id)
+);
 
-mdBtn.addEventListener("click", (e) => windowsToggle(e.target.id));
+mdBtn.addEventListener("click", (e) =>
+  windowsToggle(e.target.id === "" ? e.target.parentNode.id : e.target.id)
+);
