@@ -14,9 +14,11 @@ const csvBtn = document.getElementById("csv-btn");
 const mdBtn = document.getElementById("md-btn");
 const plhWindows = [
   "вставьте текст с разделителями",
-  "вставьте скопированную таблицу",
-  "вставьте скопированную таблицу 1",
+  "ctrl + C и ctrl + V таблицу для csv",
+  "ctrl + C и ctrl + V таблицу для md",
 ];
+
+
 
 const windowsNaming = (arr) => {
   const res = arr.map((item) => {
@@ -64,10 +66,36 @@ const csvParser = (textBlock, dividerVal) => {
   let resultStrings = textBlock.split("\n");
   let resultColumns = resultStrings.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
-  let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
+  let preResult = arrResult.map((string) => string.join(sep)).join("\n");
   console.log(arrResult);
   return preResult;
 };
+
+const mdParcer = (textBlock) => {
+  let resultStrings = textBlock.split("\n");
+
+  const escapePipe = str => str.replace(/\|/g, '\\|');
+
+  let aaa = resultStrings.map((i) => escapePipe(i))
+
+  let resultColumns = aaa.filter((item) => item != "");
+  let arrResult = resultColumns.map((item) => item.split("\t"));
+
+  let numberOfColumns = arrResult[0].length
+  let titleString = Array(numberOfColumns).fill(":-")
+  arrResult.splice(1, 0, titleString)
+
+  let arrSubResult = arrResult.map((item) => {
+    let subItem = item.join("|")
+    return "|" + subItem + "|"
+  })
+
+  let result = arrSubResult.join("\n")
+
+  console.log(aaa)
+
+  return result
+}
 
 const picker = (arr) => {
   let res = arr.join("\n");
@@ -84,7 +112,14 @@ const foo = () => {
   if (activeWindow === "csv-btn") {
     answer.value = csvParser(textInput, divider.value);
   }
+
+  if (activeWindow === "md-btn") {
+    answer.value = mdParcer(textInput)
+  }
+
 };
+
+
 
 const boo = () => {
   answer.select();
@@ -121,14 +156,14 @@ const themeToggle = () => {
 };
 
 const windowsToggle = (id) => {
- 
-   let index = allWindows.indexOf(id);
+
+  let index = allWindows.indexOf(id);
 
   question.placeholder = plhWindows[index];
 
   activeWindow = allWindows[index];
 
-  
+
   itemBtns.forEach((item) => {
     item.id === id
       ? item.classList.add("item__title-btn_active")
