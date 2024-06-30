@@ -14,8 +14,8 @@ const csvBtn = document.getElementById("csv-btn");
 const mdBtn = document.getElementById("md-btn");
 const plhWindows = [
   "вставьте текст с разделителями",
-  "вставьте скопированную таблицу",
-  "вставьте скопированную таблицу 1",
+  "ctrl + C ctrl + V  csv",
+  "ctrl + C ctrl + V  MD",
 ];
 
 const windowsNaming = (arr) => {
@@ -33,7 +33,7 @@ let darkTheme = false;
 const getDiviver = (item) => {
   let sep;
   item === "" ? (sep = ",") : (sep = item);
-  return sep;
+  return `"${sep}"`;
 };
 
 const validator = (cell, dividerVal) => {
@@ -62,10 +62,11 @@ const listParser = (textBlock, dividerVal) => {
 const csvParser = (textBlock, dividerVal) => {
   let sep = getDiviver(dividerVal);
   let resultStrings = textBlock.split("\n");
-  let resultColumns = resultStrings.filter((item) => item != "");
+  let resultColumns = resultStrings.filter((item) => item != ""); // ['1\t2\t3', '4\t5\t76', '']
   let arrResult = resultColumns.map((item) => item.split("\t"));
-  let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
-  console.log(arrResult);
+  //let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
+  let preResult = arrResult.map((string) => string.join(sep)); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
+  console.log(resultStrings);
   return preResult;
 };
 
@@ -121,14 +122,12 @@ const themeToggle = () => {
 };
 
 const windowsToggle = (id) => {
- 
-   let index = allWindows.indexOf(id);
+  let index = allWindows.indexOf(id);
 
   question.placeholder = plhWindows[index];
 
   activeWindow = allWindows[index];
 
-  
   itemBtns.forEach((item) => {
     item.id === id
       ? item.classList.add("item__title-btn_active")
