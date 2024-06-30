@@ -14,13 +14,8 @@ const csvBtn = document.getElementById("csv-btn");
 const mdBtn = document.getElementById("md-btn");
 const plhWindows = [
   "вставьте текст с разделителями",
-<<<<<<< HEAD
-  "ctrl + C ctrl + V  csv",
-  "ctrl + C ctrl + V  MD",
-=======
   "ctrl + C и ctrl + V таблицу для csv",
   "ctrl + C и ctrl + V таблицу для md",
->>>>>>> 1007a97a9ae882c98b7942f4d840787f6a574153
 ];
 
 
@@ -69,13 +64,6 @@ const listParser = (textBlock, dividerVal) => {
 const csvParser = (textBlock, dividerVal) => {
   let sep = getDiviver(dividerVal);
   let resultStrings = textBlock.split("\n");
-<<<<<<< HEAD
-  let resultColumns = resultStrings.filter((item) => item != ""); // ['1\t2\t3', '4\t5\t76', '']
-  let arrResult = resultColumns.map((item) => item.split("\t"));
-  //let preResult = arrResult.map((string) => string.join(sep)).join("\n"); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
-  let preResult = arrResult.map((string) => string.join(sep)); // [["1", "2"], ["3","4"]] => ["1", "2"] => 1sep2\n3sep4
-  console.log(resultStrings);
-=======
   let resultColumns = resultStrings.filter((item) => item != ""); // массив со строками
   let arrResult = resultColumns.map((item) => (item.split("\t"))); // массив с ячейками
 
@@ -85,7 +73,6 @@ const csvParser = (textBlock, dividerVal) => {
 
   
 
->>>>>>> 1007a97a9ae882c98b7942f4d840787f6a574153
   return preResult;
 };
 
@@ -176,20 +163,12 @@ const themeToggle = () => {
 };
 
 const windowsToggle = (id) => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 1007a97a9ae882c98b7942f4d840787f6a574153
   let index = allWindows.indexOf(id);
 
   question.placeholder = plhWindows[index];
 
   activeWindow = allWindows[index];
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1007a97a9ae882c98b7942f4d840787f6a574153
   itemBtns.forEach((item) => {
     item.id === id
       ? item.classList.add("item__title-btn_active")
