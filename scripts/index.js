@@ -64,19 +64,24 @@ const listParser = (textBlock, dividerVal) => {
 const csvParser = (textBlock, dividerVal) => {
   let sep = getDiviver(dividerVal);
   let resultStrings = textBlock.split("\n");
-  let resultColumns = resultStrings.filter((item) => item != "");
-  let arrResult = resultColumns.map((item) => item.split("\t"));
-  let preResult = arrResult.map((string) => string.join(sep)).join("\n");
-  console.log(arrResult);
+  let resultColumns = resultStrings.filter((item) => item != ""); // массив со строками
+  let arrResult = resultColumns.map((item) => (item.split("\t"))); // массив с ячейками
+
+  let aaa = arrResult.map((item) => item.map((i) => '"' + i + '"')) // переименовать переменную во что-то человеческое
+
+  let preResult = aaa.map((string) => string.join(sep)).join("\n");
+
+  
+
   return preResult;
 };
 
-const mdParcer = (textBlock) => {
+const mdParser = (textBlock) => {
   let resultStrings = textBlock.split("\n");
 
   const escapePipe = str => str.replace(/\|/g, '\\|');
 
-  let aaa = resultStrings.map((i) => escapePipe(i))
+  let aaa = resultStrings.map((i) => escapePipe(i)) // переименовать переменную во что-то человеческое
 
   let resultColumns = aaa.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
@@ -92,7 +97,7 @@ const mdParcer = (textBlock) => {
 
   let result = arrSubResult.join("\n")
 
-  console.log(aaa)
+  
 
   return result
 }
@@ -104,7 +109,9 @@ const picker = (arr) => {
 };
 
 const foo = () => {
+
   let textInput = question.value;
+
   if (activeWindow === "list-btn") {
     answer.value = picker(listParser(textInput, divider.value));
   }
@@ -114,7 +121,7 @@ const foo = () => {
   }
 
   if (activeWindow === "md-btn") {
-    answer.value = mdParcer(textInput)
+    answer.value = mdParser(textInput)
   }
 
 };
