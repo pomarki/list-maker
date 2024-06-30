@@ -69,6 +69,7 @@ html {
   width: 90%;
   align-self: flex-end;
   justify-self: center;
+  color: var(--blue);
 }
 
 .item__title-btn {
