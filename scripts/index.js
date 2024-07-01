@@ -13,12 +13,10 @@ const listBtn = document.getElementById("list-btn");
 const csvBtn = document.getElementById("csv-btn");
 const mdBtn = document.getElementById("md-btn");
 const plhWindows = [
-  "вставьте текст с разделителями",
   "ctrl + C и ctrl + V таблицу для csv",
   "ctrl + C и ctrl + V таблицу для md",
+  "вставьте текст с разделителями",
 ];
-
-
 
 const windowsNaming = (arr) => {
   const res = arr.map((item) => {
@@ -35,7 +33,6 @@ let darkTheme = false;
 const getDiviver = (item) => {
   let sep;
   item === "" ? (sep = ",") : (sep = item);
-  /* return `"${sep}"`; */
   return sep;
 };
 
@@ -65,43 +62,32 @@ const listParser = (textBlock, dividerVal) => {
 const csvParser = (textBlock, dividerVal) => {
   let sep = getDiviver(dividerVal);
   let resultStrings = textBlock.split("\n");
-  let resultColumns = resultStrings.filter((item) => item != ""); // массив со строками
-  let arrResult = resultColumns.map((item) => (item.split("\t"))); // массив с ячейками
-
-  let aaa = arrResult.map((item) => item.map((i) => '"' + i + '"')) // массив с ячейками в кавычках
-
+  let resultColumns = resultStrings.filter((item) => item != "");
+  let arrResult = resultColumns.map((item) => item.split("\t"));
+  let aaa = arrResult.map((item) => item.map((i) => '"' + i + '"'));
   let preResult = aaa.map((string) => string.join(sep)).join("\n");
-
-  console.log(aaa, sep)
 
   return preResult;
 };
 
 const mdParser = (textBlock) => {
   let resultStrings = textBlock.split("\n");
-
-  const escapePipe = str => str.replace(/\|/g, '\\|');
-
-  let aaa = resultStrings.map((i) => escapePipe(i)) 
-
+  const escapePipe = (str) => str.replace(/\|/g, "\\|");
+  let aaa = resultStrings.map((i) => escapePipe(i));
   let resultColumns = aaa.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
-
-  let numberOfColumns = arrResult[0].length
-  let titleString = Array(numberOfColumns).fill(":-")
-  arrResult.splice(1, 0, titleString)
-
+  let numberOfColumns = arrResult[0].length;
+  let titleString = Array(numberOfColumns).fill(":-");
+  arrResult.splice(1, 0, titleString);
   let arrSubResult = arrResult.map((item) => {
-    let subItem = item.join("|")
-    return "|" + subItem + "|"
-  })
+    let subItem = item.join("|");
+    return "|" + subItem + "|";
+  });
 
-  let result = arrSubResult.join("\n")
+  let result = arrSubResult.join("\n");
 
-  
-
-  return result
-}
+  return result;
+};
 
 const picker = (arr) => {
   let res = arr.join("\n");
@@ -110,7 +96,6 @@ const picker = (arr) => {
 };
 
 const foo = () => {
-
   let textInput = question.value;
 
   if (activeWindow === "list-btn") {
@@ -122,12 +107,9 @@ const foo = () => {
   }
 
   if (activeWindow === "md-btn") {
-    answer.value = mdParser(textInput)
+    answer.value = mdParser(textInput);
   }
-
 };
-
-
 
 const boo = () => {
   answer.select();
@@ -165,9 +147,7 @@ const themeToggle = () => {
 
 const windowsToggle = (id) => {
   let index = allWindows.indexOf(id);
-
   question.placeholder = plhWindows[index];
-
   activeWindow = allWindows[index];
 
   itemBtns.forEach((item) => {
