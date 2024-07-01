@@ -35,7 +35,8 @@ let darkTheme = false;
 const getDiviver = (item) => {
   let sep;
   item === "" ? (sep = ",") : (sep = item);
-  return `"${sep}"`;
+  /* return `"${sep}"`; */
+  return sep;
 };
 
 const validator = (cell, dividerVal) => {
@@ -67,11 +68,11 @@ const csvParser = (textBlock, dividerVal) => {
   let resultColumns = resultStrings.filter((item) => item != ""); // массив со строками
   let arrResult = resultColumns.map((item) => (item.split("\t"))); // массив с ячейками
 
-  let aaa = arrResult.map((item) => item.map((i) => '"' + i + '"')) // переименовать переменную во что-то человеческое
+  let aaa = arrResult.map((item) => item.map((i) => '"' + i + '"')) // массив с ячейками в кавычках
 
   let preResult = aaa.map((string) => string.join(sep)).join("\n");
 
-  
+  console.log(aaa, sep)
 
   return preResult;
 };
@@ -81,7 +82,7 @@ const mdParser = (textBlock) => {
 
   const escapePipe = str => str.replace(/\|/g, '\\|');
 
-  let aaa = resultStrings.map((i) => escapePipe(i)) // переименовать переменную во что-то человеческое
+  let aaa = resultStrings.map((i) => escapePipe(i)) 
 
   let resultColumns = aaa.filter((item) => item != "");
   let arrResult = resultColumns.map((item) => item.split("\t"));
